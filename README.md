@@ -1,40 +1,30 @@
-Below are the steps to get your plugin running. You can also find instructions at:
+# Webet Theme Generator
 
-  https://www.figma.com/plugin-docs/plugin-quickstart-guide/
+Criado a partir da ideia de Josué Gomes.
 
-This plugin template uses Typescript and NPM, two standard tools in creating JavaScript applications.
+---
 
-First, download Node.js which comes with NPM. This will allow you to install TypeScript and other
-libraries. You can find the download link here:
+## Passo a passo no FIGMA
+1 - Baixe e instale o Figma APP correto para seu SO [neste link](https://www.figma.com/downloads/). Para Linux Debian, há esta [opção na Snapcraft](https://snapcraft.io/install/figma-linux/debian).
 
-  https://nodejs.org/en/download/
 
-Next, install TypeScript using the command:
+2 - Para poder usar o plugin local você irá precisar criar uma cópia do arquivo do tema caso não seja o dono.
 
-  npm install -g typescript
+![Save to Draft](/git/save-to-drafts.png)
 
-Finally, in the directory of your plugin, get the latest type definitions for the plugin API by running:
 
-  npm install --save-dev @figma/plugin-typings
+3 - [Ative o Dev Mode](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode#Enter_Dev_Mode) no Figma.
 
-If you are familiar with JavaScript, TypeScript will look very familiar. In fact, valid JavaScript code
-is already valid Typescript code.
 
-TypeScript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
+4 - Com o modo desenvolvedor ativo, Selecione o menu `Figma > Plugins > Development > Import plugin from manifest`
 
-For more information, visit https://www.typescriptlang.org/
+![Import from Manifest](/git/import-from-manifest.png)
 
-Using TypeScript requires a compiler to convert TypeScript (code.ts) into JavaScript (code.js)
-for the browser to run.
+5 - Navegue até a pasta dos arquivos do plugin e selecione o `manifest.json`
 
-We recommend writing TypeScript code using Visual Studio code:
+6 - Na aba de Plugins, selecione `Run > In-development version`
+![Plugins Tab](/git/plugins-tab.png)
 
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Open this directory in Visual Studio Code.
-3. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "npm: watch". You will have to do this again every time
-    you reopen Visual Studio Code.
+7 - Se as variáveis estiverem corretas, o plugin deve gerar o objeto js correto para ser usado na propriedade `colors` da configuração do tema `config.js`.
 
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+![Plugin](/git/plugin.png)
