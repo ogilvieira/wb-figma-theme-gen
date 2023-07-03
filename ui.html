@@ -1,0 +1,48 @@
+
+  <h2>Webet Theme Generator</h2>
+  <p>Gera variáveis de cor do tema para uso em webet.ui</p>
+  <textarea id="result"></textarea>
+
+  <button onclick="copyText(document.getElementById('result').value)">Copiar</button>
+
+  <style>
+    body {
+      font-size: 14px;
+      font-family: sans-serif;
+      background-color: var(--figma-color-bg);
+      color: var(--figma-color-text);
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+      height: 200px;
+      outline: none;
+      margin: 1rem auto;
+      border-radius: 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10px;
+    }
+  </style>
+  <script>
+
+  function copyText(content) {
+   
+    var myTemporaryInputElement = document.createElement("input");
+    myTemporaryInputElement.type = "text";
+    myTemporaryInputElement.value = content;
+    
+    document.body.appendChild(myTemporaryInputElement);
+    
+    myTemporaryInputElement.select();
+    document.execCommand("Copy");
+    
+    document.body.removeChild(myTemporaryInputElement);
+  }
+
+  onmessage = (event) => {
+    document.getElementById("result").value = event.data.pluginMessage;
+  }
+
+  </script>
+  
