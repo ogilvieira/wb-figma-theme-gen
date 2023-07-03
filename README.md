@@ -23,6 +23,7 @@ Criado a partir da ideia de Josué Gomes.
 5 - Navegue até a pasta dos arquivos do plugin e selecione o `manifest.json`
 
 6 - Na aba de Plugins, selecione `Run > In-development version`
+
 ![Plugins Tab](/git/plugins-tab.png)
 
 7 - Se as variáveis estiverem corretas, o plugin deve gerar o objeto js correto para ser usado na propriedade `colors` da configuração do tema `config.js`.
