@@ -1,7 +1,7 @@
 
   <h2>Webet Theme Generator</h2>
   <p>Gera variáveis de cor do tema para uso em webet.ui</p>
-  <textarea id="result"></textarea>
+  <textarea class="textarea" id="result"></textarea>
 
   <button onclick="copyText(document.getElementById('result').value)">Copiar</button>
 
@@ -27,7 +27,7 @@
   <script>
 
   function copyText(content) {
-   
+  
     var myTemporaryInputElement = document.createElement("input");
     myTemporaryInputElement.type = "text";
     myTemporaryInputElement.value = content;

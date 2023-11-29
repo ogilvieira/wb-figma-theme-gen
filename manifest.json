@@ -2,13 +2,13 @@
   "name": "WebetThemeGen (beta)",
   "id": "1257705344446703107",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "dist/code.js",
   "capabilities": [
     "inspect"
   ],
   "enableProposedApi": false,
   "editorType": ["figma", "dev"],
-  "ui": "ui.html",
+  "ui": "./ui.html",
   "networkAccess": {
     "allowedDomains": [
       "none"

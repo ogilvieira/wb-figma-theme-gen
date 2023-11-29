@@ -59,7 +59,7 @@ function transformKeys(obj) {
     return newObj;
 }
 function getPaintStyles() {
-    const paintStyles = figma.getLocalPaintStyles(); // Obtém os estilos de cores locais da página atual do Figma
+    const paintStyles = figma.getLocalPaintStyles();
     const stylesData = {}; // Objeto JSON para armazenar os dados dos estilos de cores
     // Percorre os estilos de cores e obtém as informações relevantes
     paintStyles.forEach(style => {
@@ -70,10 +70,11 @@ function getPaintStyles() {
             styleColor = rgbToHex(Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)); // Converte os valores RGB para hexadecimal
         }
         else if (style.paints[0].type === "GRADIENT_LINEAR" || style.paints[0].type === "GRADIENT_RADIAL") {
+            console.info(style.paints);
             // Para estilos de cores gradientes, obtém os valores hex dos pontos de cor
             styleColor = style.paints[0].gradientStops.map(stop => {
-                const { r, g, b } = stop.color; // Obtém os valores RGB do ponto de cor
-                return rgbToHex(Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)); // Converte os valores RGB para hexadecimal
+                const { r, g, b, a } = stop.color; // Obtém os valores RGB do ponto de cor
+                return `rgba(${Math.round(r * 255)},${Math.round(g * 255)},${Math.round(b * 255)},${a})`; // Converte os valores RGB para hexadecimal
             });
         }
         const styleNameParts = style.name.split("/"); // Divide o nome do estilo de cor em partes com base no caractere "/"
@@ -89,7 +90,7 @@ function getPaintStyles() {
         // Verifica se a chave já existe no último nível do objeto JSON e assume o valor da chave como valor
         const styleName = styleNameParts[styleNameParts.length - 1].replace('--', '');
         if (!currentLevel[styleName]) {
-            currentLevel[styleName] = styleColor;
+            currentLevel[styleName] = Array.isArray(styleColor) ? `linear-gradient(270deg, ${styleColor[0]} 0%, ${styleColor[1]} 100%)` : styleColor;
         }
     });
     return stylesData;
