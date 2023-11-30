@@ -1,5 +1,5 @@
 {
-  "name": "WebetThemeGen (beta)",
+  "name": "Gerador de Arquivo de Tema para Webet",
   "id": "1257705344446703107",
   "api": "1.0.0",
   "main": "dist/code.js",
@@ -8,7 +8,7 @@
   ],
   "enableProposedApi": false,
   "editorType": ["figma", "dev"],
-  "ui": "./ui.html",
+  "ui": "dist/ui.html",
   "networkAccess": {
     "allowedDomains": [
       "none"

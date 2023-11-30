@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es6",
-    "lib": ["es6"],
-    "strict": true,
+    "target": "es2022",
+    "jsx": "react",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
     ]
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

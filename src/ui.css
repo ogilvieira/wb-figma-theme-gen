@@ -1,0 +1,165 @@
+:root {
+  --color-bg: var(--figma-color-bg);
+  --color-bg-hover: var(--figma-color-bg-hover);
+  --color-bg-active: var(--figma-color-bg-pressed);
+  --color-border: var(--figma-color-border);
+  --color-border-focus: var(--figma-color-border-selected);
+  --color-icon: var(--figma-color-icon);
+  --color-text: var(--figma-color-text);
+  --color-bg-brand: var(--figma-color-bg-brand);
+  --color-bg-brand-hover: var(--figma-color-bg-brand-hover);
+  --color-bg-brand-active: var(--figma-color-bg-brand-pressed);
+  --color-border-brand: var(--figma-color-border-brand);
+  --color-border-brand-focus: var(--figma-color-border-selected-strong);
+  --color-text-brand: var(--figma-color-text-onbrand);
+}
+
+body,
+button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 12px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 1rem;
+}
+
+button {
+  border-radius: 0.25rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  margin-bottom: .5rem;
+}
+button:hover {
+  background-color: var(--color-bg-hover);
+}
+button:active {
+  background-color: var(--color-bg-active);
+}
+button:focus-visible {
+  border: none;
+  outline-color: var(--color-border-focus);
+}
+button.brand {
+  --color-bg: var(--color-bg-brand);
+  --color-text: var(--color-text-brand);
+  --color-bg-hover: var(--color-bg-brand-hover);
+  --color-bg-active: var(--color-bg-brand-active);
+  --color-border: transparent;
+  --color-border-focus: var(--color-border-brand-focus);
+}
+button + button { margin-left: 0.5rem; }
+
+textarea {
+  width: 100%;
+  height: 300px;
+  font-family: Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12;
+  text-wrap: nowrap;
+  text-align: start;
+  white-space-collapse: preserve;
+  background: 1px solid var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: 1px solid var(--color-text);
+  padding: 0.5rem;
+  resize: none;
+}
+
+textarea:focus-visible {
+  border-color: var(--color-border-focus);
+  outline-color: var(--color-border-focus);
+}
+
+svg {
+  stroke: var(--color-icon, rgba(0, 0, 0, 0.9));
+}
+  
+section {
+  margin-bottom: 1rem;
+}
+section > * + * {
+  margin-top: 0.5rem;
+}
+footer > * + * {
+  margin-left: 0.5rem;
+}
+
+img {
+  height: auto;
+  width: 2rem;
+}
+
+.tabs {
+  width: 100%;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.tab {
+  cursor: pointer;
+  border-radius: 0.25rem 0.25rem 0 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  border-bottom: 0;
+  padding: 0.5rem 1rem;
+  margin-right: .5rem;
+  margin-bottom: 0;
+}
+
+.tab:hover {
+  background-color: var(--color-bg-hover);
+}
+.tab.is-active {
+  background-color: var(--color-bg-active);
+}
+
+.table {
+  width: 100%;
+  border-color: var(--color-border);
+  border: solid 1px var(--color-border);
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.table-column {
+  padding: 0 5px;
+}
+
+.table-row {
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr 60px 60px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+}
+
+/* table tr:nth-child(2n + 1) {
+  background-color: var(--color-bg-active);
+} */
+
+
+.key-code {
+  font-family: Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12;
+  /* text-wrap: nowrap; */
+}
+
+.key-square {
+  width: 50px;
+  height: 30px;
+  border-radius: 3px;
+}
