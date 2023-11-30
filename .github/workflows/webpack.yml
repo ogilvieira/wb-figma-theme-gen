@@ -28,4 +28,6 @@ jobs:
         npx webpack
 
     - name: Zip Folder
-      run: zip -r ${{ github.event.repository.name }}.zip . -x ".git/*" ".github/*" "phpcs.xml" "composer.json" "composer.lock" ".gitignore"
+      uses: montudor/action-zip@v1.0.0
+      with:
+        args: zip -qq -r ${{ github.event.repository.name }}.zip manifest.json dist
