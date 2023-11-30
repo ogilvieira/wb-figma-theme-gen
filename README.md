@@ -4,6 +4,11 @@ Gerador de variáveis de tema para WeBet
 ---
 
 ## Passo a passo no FIGMA
+
+### 0 - Baixe este plugin 
+- Acesse https://github.com/ogilvieira/wb-figma-theme-gen/releases e baixe o arquivo `wb-figma-theme-gen.zip`
+- Descompacte o arquivo
+
 ### 1 - Baixar e Instalar Figma App
 Baixe e instale o Figma APP correto para seu SO [neste link](https://www.figma.com/downloads/). Para Linux Debian, há esta [opção na Snapcraft](https://snapcraft.io/install/figma-linux/debian).
 
@@ -30,5 +35,5 @@ Instruções para [ativar o Dev Mode](https://help.figma.com/hc/en-us/articles/1
 
 7 - Se as variáveis estiverem corretas, o plugin deve gerar a `Tabela de Prévia` e o `Objeto JavasScript`corretamente para ser usado na propriedade `colors` da configuração do tema `themes/${NOME_DO_TEMA}/config.js`.
 
-![Tabela de Prévia](/git/plugin-2.png)
+![Tabela de Prévia](/git/plugin-1.png)
 ![Objeto JSON](/git/plugin-2.png)
