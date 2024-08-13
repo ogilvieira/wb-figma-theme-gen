@@ -1,10 +1,15 @@
 name: NodeJS with Webpack
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 
 on:
   push:
-    branches: [ "rc-**" ]
+    branches:
+      - main
+      - 'rc-**'
   pull_request:
-    branches: [ "rc-**" ]
+    branches: 
+      - main
+      - 'rc-**'
 
 jobs:
   build:
