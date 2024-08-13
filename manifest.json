@@ -1,7 +1,7 @@
 {
-  "name": "Gerador de Arquivo de Tema para Webet",
+  "name": "WeBet Tema Gerador (v3)",
   "id": "1257705344446703107",
-  "api": "2.0.0",
+  "api": "1.0.0",
   "main": "dist/code.js",
   "capabilities": [
     "inspect"
