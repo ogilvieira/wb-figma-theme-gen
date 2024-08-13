@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ "release/**" ]
+    branches: [ "rc-**" ]
   pull_request:
-    branches: [ "release/**" ]
+    branches: [ "rc-**" ]
 
 jobs:
   build:
@@ -32,7 +32,7 @@ jobs:
     - name: Zip Folder
       uses: montudor/action-zip@v1.0.0
       with:
-        args: zip -qq -r ${{ github.event.repository.name }}.zip manifest.json dist
+        args: zip -qq -r ${{ github.event.repository.name }}-${{ github.ref }}.zip manifest.json dist
     
     - name: Upload Release File
       uses: svenstaro/upload-release-action@v2
