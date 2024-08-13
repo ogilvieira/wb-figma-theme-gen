@@ -1,5 +1,5 @@
 name: NodeJS with Webpack
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: Deploy by @${{ github.actor }}
 
 on:
   push:
@@ -37,13 +37,13 @@ jobs:
     - name: Zip Folder
       uses: montudor/action-zip@v1.0.0
       with:
-        args: zip -qq -r ${{ github.event.repository.name }}-${{ github.ref }}.zip manifest.json dist
+        args: zip -qq -r ${{ github.event.repository.name }}-${{ github.head_ref || github.ref_name }}.zip manifest.json dist
     
     - name: Upload Release File
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ github.event.repository.name }}-${{ github.ref }}.zip
+        file: ${{ github.event.repository.name }}-${{ github.head_ref || github.ref_name }}.zip
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
