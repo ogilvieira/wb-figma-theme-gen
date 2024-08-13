@@ -8,6 +8,8 @@ function App() {
   const textAreaRef = React.useRef(null);
   const [lastUpdate, setLastUpdate] = React.useState(null);
   const [dataContent, setdataContent] = React.useState(null);
+  const [defaultCollection, setDefaultCollection] = React.useState(null);
+  const [selectedMode, setSelectedMode] = React.useState('');
   const [tab, setTab] = React.useState('table');
   const [isCopied, setIsCopied] = React.useState(false);
   const parsedDataDataContent = React.useMemo(() => (!!dataContent ? JSON.stringify(dataContent, null, 2) : ''), [dataContent]);
@@ -55,6 +57,10 @@ function App() {
   window.onmessage = (event) => {
     const message = event.data.pluginMessage;
 
+    if( message.type === 'GET_DEFAULT_COLLECTION') {
+      setDefaultCollection(message.data);
+    }
+
     if( message.type === 'GET_STYLE') {
       setdataContent(message.data);
       setLastUpdate(new Date());
@@ -62,9 +68,31 @@ function App() {
 
   }
 
-  const onCreate = () => {
-    parent.postMessage({ pluginMessage: 'GET_STYLE' }, '*');
+  const onGetDefaultCollection = () => {
+    parent.postMessage({ pluginMessage: { func:'GET_DEFAULT_COLLECTION' } }, '*');
   };
+
+  React.useEffect(
+    onGetDefaultCollection,
+    []
+  )
+
+  const onGetStyles = (selectedMode) => {
+    if(!selectedMode) {
+      setdataContent('');
+      setLastUpdate(null);
+      return;
+    }
+
+    parent.postMessage({ pluginMessage: { 
+      func: 'GET_STYLES', 
+      collectionId: defaultCollection.collectionId, 
+      selectedMode,
+      variables: defaultCollection.variableIds
+      
+    } }, '*');
+  };
+
 
   const onCopy = async () => {
     textAreaRef.current.select();
@@ -77,10 +105,31 @@ function App() {
  
   return (
     <main>
+
+      {defaultCollection?.modes.length > 0 && (<section>
+        <select 
+          value={selectedMode}
+          onChange={e => { 
+            setSelectedMode(e.target.value);
+            onGetStyles(e.target.value);
+          }}>
+          <option value="">Selecione o Tema</option>
+          {defaultCollection?.modes.map( (mode, index) => (
+            <option 
+              value={mode.modeId} 
+              key={`${mode.modeId}-${index}`}
+              >
+                {mode.name}
+              </option>
+          ))}
+        </select>
+
+      </section>)}
+
       <section>
-        <button className="brand" onClick={onCreate}>
-          Carregar Cores
-        </button>
+        {selectedMode && (<button className="brand" onClick={() => onGetStyles(selectedMode)}>
+          Gerar novamente
+        </button>)}
 
         <div>
         { lastUpdate && (<div>
@@ -89,6 +138,7 @@ function App() {
         </div>
 
       </section>
+
       {!!cssKeys && cssKeys.length > 0 && (<section className="tabs">
         <div className={`tab${tab === 'table' ? ' is-active' : ''}`} onClick={() => setTab('table')}>Tabela</div>
         <div className={`tab${tab === 'code' ? ' is-active' : ''}`} onClick={() => setTab('code')}>Código</div>
@@ -117,6 +167,7 @@ function App() {
 
 
       </section>)}
+      
       {tab === 'code' && (<section>
         <textarea ref={textAreaRef} value={parsedDataDataContent} readOnly onClick={onCopy}></textarea>
       </section>)}
