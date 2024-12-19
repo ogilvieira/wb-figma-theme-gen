@@ -58,5 +58,5 @@ export default function transformVariable(variables: Variable[], selectedMode: S
       
     }
 
-    return obj;
+    return obj['webetLibrary'] ? obj['webetLibrary'] : obj;
 }

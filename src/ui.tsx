@@ -77,19 +77,18 @@ function App() {
     []
   )
 
-  const onGetStyles = (selectedMode) => {
-    if(!selectedMode) {
+  const onGetStyles = () => {
+    if(!defaultCollection?.modes.length) {
       setdataContent('');
       setLastUpdate(null);
       return;
     }
 
     parent.postMessage({ pluginMessage: { 
-      func: 'GET_STYLES', 
+      func: 'GET_STYLES',
       collectionId: defaultCollection.collectionId, 
-      selectedMode,
-      variables: defaultCollection.variableIds
-      
+      selectedModes: defaultCollection?.modes,
+      variables: defaultCollection.variableIds      
     } }, '*');
   };
 
@@ -105,35 +104,14 @@ function App() {
  
   return (
     <main>
-
-      {defaultCollection?.modes.length > 0 && (<section>
-        <select 
-          value={selectedMode}
-          onChange={e => { 
-            setSelectedMode(e.target.value);
-            onGetStyles(e.target.value);
-          }}>
-          <option value="">Selecione o Tema</option>
-          {defaultCollection?.modes.map( (mode, index) => (
-            <option 
-              value={mode.modeId} 
-              key={`${mode.modeId}-${index}`}
-              >
-                {mode.name}
-              </option>
-          ))}
-        </select>
-
-      </section>)}
-
       <section>
-        {selectedMode && (<button className="brand" onClick={() => onGetStyles(selectedMode)}>
-          Gerar novamente
+        {defaultCollection?.modes.length && (<button className="brand" onClick={() => onGetStyles()}>
+          {lastUpdate ? 'Atualizar variáveis' : 'Gerar'} 
         </button>)}
 
         <div>
         { lastUpdate && (<div>
-          <small>Último carregamento: {lastUpdate.toLocaleString('pt-br')}</small>
+          <small>Atualizado em: {lastUpdate.toLocaleString('pt-br')}</small>
         </div>) }          
         </div>
 
