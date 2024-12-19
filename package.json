@@ -1,6 +1,6 @@
 {
   "name": "webet-theme-file-generator",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Gerador de variáveis de tema para WeBet",
   "main": "code.js",
   "scripts": {
